@@ -42,10 +42,13 @@ class SearchViewController: UIViewController {
   }()
 
   private var searchResultFetcher: MovieSearchResultFetching
+  private let typingDebouncer: DebouncerInterface
 
   //MARK: - Lifecycle
-  init(searchResultFetcher: MovieSearchResultFetching) {
+  init(searchResultFetcher: MovieSearchResultFetching,
+       debouncer: DebouncerInterface = NSObjectPerformDebouncer(interval: 0.25)) {
     self.searchResultFetcher = searchResultFetcher
+    self.typingDebouncer = debouncer
 
     emptyStateViewController = EmptyStateViewController()
     loadingViewController = LoadingViewController()
@@ -65,6 +68,11 @@ class SearchViewController: UIViewController {
     self.navigationItem.searchController = searchController
 
     searchResultFetcher.delegate = self
+
+    typingDebouncer.add { [weak self] in
+      guard let self = self else { return }
+      self.searchResultFetcher.fetchMovies(matching: self.searchController.searchBar.text)
+    }
 
     take(action: .show, for: .empty)
   }
@@ -115,7 +123,7 @@ extension SearchViewController: UISearchResultsUpdating {
     take(action: .hide, for: .empty)
     take(action: .hide, for: .results)
     take(action: .show, for: .loading)
-    searchResultFetcher.fetchMovies(matching: text)
+    typingDebouncer.trigger()
   }
 }
 
