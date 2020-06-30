@@ -73,4 +73,12 @@ class SearchResultTableViewCell: UITableViewCell {
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+
+  override func prepareForReuse() {
+    super.prepareForReuse()
+
+    movieTitleLabel.text = nil
+    yearLabel.text = nil
+    posterImage.image = nil
+  }
 }
