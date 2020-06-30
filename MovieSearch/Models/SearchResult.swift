@@ -54,7 +54,7 @@ struct SearchResultMovie: Codable {
   let year: String
   let imdbID: String
   let type: String
-  let posterURL: URL
+  let posterURL: URL?
 
   private enum CodingKeys: String, CodingKey {
     case title = "Title"
@@ -63,5 +63,21 @@ struct SearchResultMovie: Codable {
     case posterURL = "Poster"
 
     case imdbID // fine
+  }
+
+  init(from decoder: Decoder) throws {
+    let values = try decoder.container(keyedBy: CodingKeys.self)
+    self.title = try values.decode(String.self, forKey: CodingKeys.title)
+    self.year = try values.decode(String.self, forKey: CodingKeys.year)
+    self.imdbID = try values.decode(String.self, forKey: CodingKeys.imdbID)
+    self.type = try values.decode(String.self, forKey: CodingKeys.type)
+
+    let posterURL = try values.decode(String.self, forKey: CodingKeys.posterURL)
+    switch posterURL {
+      case "N/A":
+        self.posterURL = nil
+      default:
+        self.posterURL = URL(string: posterURL)
+    }
   }
 }
