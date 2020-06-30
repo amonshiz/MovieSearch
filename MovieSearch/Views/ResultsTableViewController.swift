@@ -43,15 +43,13 @@ extension ResultsTableViewController: UITableViewDataSource, UITableViewDelegate
   }
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    guard let results = results
-      , case let SearchResult.success(_, search) = results else { return 0 }
+    guard let results = results?.movies() else { return 0 }
 
-    return search.count
+    return results.count
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let results = results
-      , case let SearchResult.success(_, search) = results else {
+    guard let results = results?.movies() else {
       fatalError("There can be no cells to dequeue if there are no results")
     }
 
@@ -59,7 +57,7 @@ extension ResultsTableViewController: UITableViewDataSource, UITableViewDelegate
       fatalError("Unable to dequeue expected cell type")
     }
 
-    let result = search[indexPath.row]
+    let result = results[indexPath.row]
     cell.movieTitleLabel.text = result.title
     cell.yearLabel.text = result.year
     return cell

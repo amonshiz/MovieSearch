@@ -49,6 +49,17 @@ enum SearchResult: Codable {
   }
 }
 
+extension SearchResult {
+  func movies() -> [SearchResultMovie]? {
+    switch self {
+      case let .success(_, search):
+        return search
+      case .error:
+        return nil
+    }
+  }
+}
+
 struct SearchResultMovie: Codable {
   let title: String
   let year: String
