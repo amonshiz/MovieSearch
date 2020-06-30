@@ -19,6 +19,7 @@
 		1B855A2024AB8C78008A8789 /* ResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B855A1F24AB8C78008A8789 /* ResultsTableViewController.swift */; };
 		1B855A2324AB8F4A008A8789 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B855A2224AB8F4A008A8789 /* SearchResult.swift */; };
 		1B855A2524AB9195008A8789 /* SampleSearch.json in Resources */ = {isa = PBXBuildFile; fileRef = 1B855A2424AB9195008A8789 /* SampleSearch.json */; };
+		1B855A2724ABA0A7008A8789 /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B855A2624ABA0A7008A8789 /* SearchResultTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		1B855A1F24AB8C78008A8789 /* ResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableViewController.swift; sourceTree = "<group>"; };
 		1B855A2224AB8F4A008A8789 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		1B855A2424AB9195008A8789 /* SampleSearch.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SampleSearch.json; sourceTree = "<group>"; };
+		1B855A2624ABA0A7008A8789 /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				1B855A1B24AB8544008A8789 /* EmptyStateViewController.swift */,
 				1B855A1D24AB8703008A8789 /* LoadingViewController.swift */,
 				1B855A1F24AB8C78008A8789 /* ResultsTableViewController.swift */,
+				1B855A2624ABA0A7008A8789 /* SearchResultTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 				1B855A0524AB81BA008A8789 /* SceneDelegate.swift in Sources */,
 				1B855A1824AB843E008A8789 /* UIViewController+Child.swift in Sources */,
 				1B855A1E24AB8703008A8789 /* LoadingViewController.swift in Sources */,
+				1B855A2724ABA0A7008A8789 /* SearchResultTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

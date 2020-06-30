@@ -14,6 +14,8 @@ class ResultsTableViewController: UIViewController {
     view.translatesAutoresizingMaskIntoConstraints = false
     view.estimatedRowHeight = UITableView.automaticDimension
 
+    view.register(SearchResultTableViewCell.self, forCellReuseIdentifier: String(describing:SearchResultTableViewCell.self))
+
     view.delegate = self
     view.dataSource = self
     return view
@@ -64,9 +66,14 @@ extension ResultsTableViewController: UITableViewDataSource, UITableViewDelegate
     guard let results = results else {
       fatalError("There can be no cells to dequeue if there are no results")
     }
+
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing:SearchResultTableViewCell.self), for: indexPath) as? SearchResultTableViewCell else {
+      fatalError("Unable to dequeue expected cell type")
+    }
+
     let result = results.search[indexPath.row]
-    let cell = UITableViewCell(style: .default, reuseIdentifier: "Cell")
-    cell.textLabel?.text = result.title
+    cell.movieTitleLabel.text = result.title
+    cell.yearLabel.text = result.year
     return cell
   }
 }
