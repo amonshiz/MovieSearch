@@ -21,7 +21,11 @@ class ResultsTableViewController: UIViewController {
     return view
   }()
 
-  var results: SearchResult? = nil
+  var results: SearchResult? {
+    didSet {
+      tableView.reloadData()
+    }
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -35,20 +39,6 @@ class ResultsTableViewController: UIViewController {
       tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
       tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
     ])
-
-    guard let fileURL = Bundle.main.url(forResource: "SampleSearch", withExtension: "json")
-      , let string = try? String(contentsOf: fileURL, encoding: .utf8)
-      , let data = string.data(using: .utf8) else {
-        return
-    }
-
-    do {
-      results = try JSONDecoder().decode(SearchResult.self, from: data)
-    } catch {
-      print("Decoding error: \(error)")
-    }
-
-    tableView.reloadData()
   }
 }
 

@@ -24,7 +24,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
       self.window = UIWindow(windowScene: scene)
     }
 
-    let searchViewController = SearchViewController()
+    let apiService = OMDBAPIService.shared
+    let searchViewController = SearchViewController(searchService: apiService)
     let navigationViewController = UINavigationController(rootViewController: searchViewController)
     self.window?.rootViewController = navigationViewController
     self.window?.backgroundColor = UIColor(dynamicProvider: { (traitCollection) -> UIColor in

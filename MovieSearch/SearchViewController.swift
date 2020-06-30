@@ -70,6 +70,18 @@ class SearchViewController: UIViewController {
     uninstall(resultsTableViewController, constraints: resultsConstraints)
   }
 
+  private let apiService: MovieSearchService
+
+  init(searchService: MovieSearchService) {
+    apiService = searchService
+
+    super.init(nibName: nil, bundle: nil)
+  }
+
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -91,9 +103,24 @@ extension SearchViewController: UISearchResultsUpdating {
         return
     }
 
+    // User has entered text, so start the spinner and start a search
     hideEmptyState()
-    //    showLoading()
-    showResults()
+    showLoading()
+    apiService.fetchMovies(matching: text) { [weak self] result in
+      DispatchQueue.main.async {
+        guard let self = self else { return }
+
+        self.hideLoading()
+        switch result {
+          case .none:
+            self.showEmptyState()
+          case .some(_):
+            self.showResults()
+        }
+
+        self.resultsTableViewController.results = result
+      }
+    }
   }
 }
 
