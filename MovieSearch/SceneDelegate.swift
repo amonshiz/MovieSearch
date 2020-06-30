@@ -25,7 +25,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     let apiService = OMDBAPIService.shared
-    let searchViewController = SearchViewController(searchService: apiService)
+    let searchResultFetcher = MovieSearchResultFetcher(service: apiService)
+    let searchViewController = SearchViewController(searchResultFetcher: searchResultFetcher)
     let navigationViewController = UINavigationController(rootViewController: searchViewController)
     self.window?.rootViewController = navigationViewController
     self.window?.backgroundColor = UIColor(dynamicProvider: { (traitCollection) -> UIColor in

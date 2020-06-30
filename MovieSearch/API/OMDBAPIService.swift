@@ -9,7 +9,7 @@
 import Foundation
 
 protocol MovieSearchService {
-  typealias SearchResultCallback = (SearchResult?) -> ()
+  typealias SearchResultCallback = (Data?) -> ()
   func fetchMovies(matching: String, _ completion: @escaping SearchResultCallback) -> ()
 }
 
@@ -60,14 +60,7 @@ final class OMDBAPIService: MovieSearchService {
         return
       }
 
-      let decoder = JSONDecoder()
-      do {
-        let result = try decoder.decode(SearchResult.self, from: data)
-        completion(result)
-      } catch {
-        print("Error decoding: \(error)")
-        completion(nil)
-      }
+      completion(data)
     }
 
     dataTask.resume()

@@ -47,11 +47,11 @@ class SearchViewController: UIViewController {
     resultsTableViewController.view.boundingConstraints(equalTo: view.safeAreaLayoutGuide)
   }()
 
-  private let apiService: MovieSearchService
+  private let searchResultFetcher: MovieSearchResultFetching
 
   //MARK: - Lifecycle
-  init(searchService: MovieSearchService) {
-    apiService = searchService
+  init(searchResultFetcher: MovieSearchResultFetching) {
+    self.searchResultFetcher = searchResultFetcher
 
     super.init(nibName: nil, bundle: nil)
   }
@@ -114,16 +114,16 @@ extension SearchViewController: UISearchResultsUpdating {
     // User has entered text, so start the spinner and start a search
     take(action: .hide, for: .empty)
     take(action: .show, for: .loading)
-    apiService.fetchMovies(matching: text) { [weak self] result in
+    searchResultFetcher.fetchMovies(matching: text) { [weak self] result in
       DispatchQueue.main.async {
         guard let self = self else { return }
 
         self.take(action: .hide, for: .loading)
-        switch result {
-          case .none:
+        switch result.search.count {
+          case 0:
             self.take(action: .show, for: .empty)
 
-          case .some(_):
+          default:
             self.take(action: .show, for: .results)
         }
 
