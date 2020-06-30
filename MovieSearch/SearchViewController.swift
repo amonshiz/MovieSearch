@@ -134,6 +134,7 @@ extension SearchViewController: UISearchResultsUpdating {
         take(action: .hide, for: .loading)
         take(action: .hide, for: .results)
         take(action: .show, for: .empty)
+        self.resultsTableViewController.results = nil
         return
     }
 
