@@ -113,18 +113,24 @@ extension SearchViewController: UISearchResultsUpdating {
 
     // User has entered text, so start the spinner and start a search
     take(action: .hide, for: .empty)
+    take(action: .hide, for: .results)
     take(action: .show, for: .loading)
     searchResultFetcher.fetchMovies(matching: text) { [weak self] result in
       DispatchQueue.main.async {
         guard let self = self else { return }
 
         self.take(action: .hide, for: .loading)
-        switch result.search.count {
-          case 0:
-            self.take(action: .show, for: .empty)
+        switch result {
+          case let .success(_, search):
+            switch search.count {
+              case 0:
+                self.take(action: .show, for: .empty)
 
-          default:
-            self.take(action: .show, for: .results)
+              default:
+                self.take(action: .show, for: .results)
+            }
+          case .error:
+            self.take(action: .show, for: .empty)
         }
 
         self.resultsTableViewController.results = result

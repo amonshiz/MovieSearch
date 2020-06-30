@@ -22,7 +22,7 @@ class MovieSearchResultFetcher: MovieSearchResultFetching {
 
   func fetchMovies(matching: String, _ completion: @escaping CompletionHandler) {
     apiService.fetchMovies(matching: matching) { data in
-      var resultToReturn = SearchResult(totalResults: "0", search: [], response: "True")
+      var resultToReturn = SearchResult.success(totalResults: "0", search: [])
 
       defer {
         completion(resultToReturn)

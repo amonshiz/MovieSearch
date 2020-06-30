@@ -8,16 +8,44 @@
 
 import Foundation
 
-struct SearchResult: Codable {
-  let totalResults: String
-  let search: [SearchResultMovie]
-  let response: String
+enum SearchResult: Codable {
+  case success(totalResults: String, search: [SearchResultMovie])
+  case error(error: String)
 
   private enum CodingKeys: String, CodingKey {
     case search = "Search"
     case response = "Response"
+    case error = "Error"
 
     case totalResults // default value is fine
+  }
+
+  init(from decoder: Decoder) throws {
+    let values = try decoder.container(keyedBy: CodingKeys.self)
+    let response = try values.decode(String.self, forKey: CodingKeys.response)
+
+    switch response {
+      case "True":
+        let totalResults = try values.decode(String.self, forKey: CodingKeys.totalResults)
+        let search = try values.decode([SearchResultMovie].self, forKey: CodingKeys.search)
+        self = .success(totalResults: totalResults, search: search)
+      default:
+        let errorString = try values.decode(String.self, forKey: CodingKeys.error)
+        self = .error(error: errorString)
+    }
+  }
+
+  func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    switch self {
+      case let .success(totalResults, search):
+        try container.encode("True", forKey: CodingKeys.response)
+        try container.encode(totalResults, forKey: CodingKeys.totalResults)
+        try container.encode(search, forKey: CodingKeys.search)
+      case let .error(error):
+        try container.encode("False", forKey: CodingKeys.response)
+        try container.encode(error, forKey: CodingKeys.error)
+    }
   }
 }
 
