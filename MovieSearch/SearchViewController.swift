@@ -41,7 +41,7 @@ class SearchViewController: UIViewController {
     resultsTableViewController.view.boundingConstraints(equalTo: view.safeAreaLayoutGuide)
   }()
 
-  private let searchResultFetcher: MovieSearchResultFetching
+  private var searchResultFetcher: MovieSearchResultFetching
 
   //MARK: - Lifecycle
   init(searchResultFetcher: MovieSearchResultFetching) {
@@ -63,6 +63,8 @@ class SearchViewController: UIViewController {
 
     self.title = "Movies"
     self.navigationItem.searchController = searchController
+
+    searchResultFetcher.delegate = self
 
     take(action: .show, for: .empty)
   }
@@ -113,26 +115,28 @@ extension SearchViewController: UISearchResultsUpdating {
     take(action: .hide, for: .empty)
     take(action: .hide, for: .results)
     take(action: .show, for: .loading)
-    searchResultFetcher.fetchMovies(matching: text) { [weak self] result in
-      DispatchQueue.main.async {
-        guard let self = self else { return }
+    searchResultFetcher.fetchMovies(matching: text)
+  }
+}
 
-        self.take(action: .hide, for: .loading)
-        switch result {
-          case let .success(_, search):
-            switch search.count {
-              case 0:
-                self.take(action: .show, for: .empty)
+extension SearchViewController: MovieSearchResultUpdating {
+  func update(with results: SearchResult) {
+    DispatchQueue.main.async {
+      self.take(action: .hide, for: .loading)
+      switch results {
+        case let .success(_, search):
+          switch search.count {
+            case 0:
+              self.take(action: .show, for: .empty)
 
-              default:
-                self.take(action: .show, for: .results)
-            }
-          case .error:
-            self.take(action: .show, for: .empty)
+            default:
+              self.take(action: .show, for: .results)
         }
-
-        self.resultsTableViewController.results = result
+        case .error:
+          self.take(action: .show, for: .empty)
       }
+
+      self.resultsTableViewController.results = results
     }
   }
 }
