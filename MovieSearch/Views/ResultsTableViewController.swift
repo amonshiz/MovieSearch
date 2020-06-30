@@ -33,12 +33,7 @@ class ResultsTableViewController: UIViewController {
     view.translatesAutoresizingMaskIntoConstraints = false
 
     view.addSubview(tableView)
-    NSLayoutConstraint.activate([
-      tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-      tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-      tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-      tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-    ])
+    NSLayoutConstraint.activate(tableView.boundingConstraints(equalTo: view.safeAreaLayoutGuide))
   }
 }
 

@@ -67,12 +67,7 @@ class SearchResultTableViewCell: UITableViewCell {
     super.init(style: .default, reuseIdentifier: reuseIdentifier)
 
     contentView.addSubview(cellStackView)
-    NSLayoutConstraint.activate([
-      cellStackView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
-      cellStackView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
-      cellStackView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
-      cellStackView.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor),
-    ])
+    NSLayoutConstraint.activate(cellStackView.boundingConstraints(equalTo: contentView.layoutMarginsGuide))
   }
   
   required init?(coder: NSCoder) {

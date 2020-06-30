@@ -20,12 +20,7 @@ class SearchViewController: UIViewController {
     EmptyStateViewController()
   }()
   private lazy var emptyStateContraints: [NSLayoutConstraint] = {
-    [
-      emptyStateViewController.view.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-      emptyStateViewController.view.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-      emptyStateViewController.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-      emptyStateViewController.view.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-    ]
+    emptyStateViewController.view.boundingConstraints(equalTo: view.safeAreaLayoutGuide)
   }()
   private func showEmptyState() {
     install(emptyStateViewController, constraints: emptyStateContraints)
@@ -38,12 +33,7 @@ class SearchViewController: UIViewController {
     LoadingViewController()
   }()
   private lazy var loadingConstraints: [NSLayoutConstraint] = {
-    [
-      loadingViewController.view.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-      loadingViewController.view.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-      loadingViewController.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-      loadingViewController.view.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-    ]
+    loadingViewController.view.boundingConstraints(equalTo: view.safeAreaLayoutGuide)
   }()
   private func showLoading() {
     install(loadingViewController, constraints: loadingConstraints)
@@ -56,12 +46,7 @@ class SearchViewController: UIViewController {
     ResultsTableViewController()
   }()
   private lazy var resultsConstraints: [NSLayoutConstraint] = {
-    [
-      resultsTableViewController.view.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-      resultsTableViewController.view.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-      resultsTableViewController.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-      resultsTableViewController.view.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-    ]
+    resultsTableViewController.view.boundingConstraints(equalTo: view.safeAreaLayoutGuide)
   }()
   private func showResults() {
     install(resultsTableViewController, constraints: resultsConstraints)
