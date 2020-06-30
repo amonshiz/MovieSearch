@@ -25,6 +25,7 @@
 		1B855A3224ABB6A6008A8789 /* MovieSearchResultFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B855A3124ABB6A6008A8789 /* MovieSearchResultFetcher.swift */; };
 		1B855A3724ABBEA8008A8789 /* DebouncerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B855A3524ABBEA8008A8789 /* DebouncerInterface.swift */; };
 		1B855A3824ABBEA8008A8789 /* NSObjectPerformDebouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B855A3624ABBEA8008A8789 /* NSObjectPerformDebouncer.swift */; };
+		1B855A3A24ABC5C1008A8789 /* ImageFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B855A3924ABC5C1008A8789 /* ImageFetcher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		1B855A3124ABB6A6008A8789 /* MovieSearchResultFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchResultFetcher.swift; sourceTree = "<group>"; };
 		1B855A3524ABBEA8008A8789 /* DebouncerInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebouncerInterface.swift; sourceTree = "<group>"; };
 		1B855A3624ABBEA8008A8789 /* NSObjectPerformDebouncer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSObjectPerformDebouncer.swift; sourceTree = "<group>"; };
+		1B855A3924ABC5C1008A8789 /* ImageFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFetcher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 				1B855A3624ABBEA8008A8789 /* NSObjectPerformDebouncer.swift */,
 				1B855A2924ABA6A8008A8789 /* OMDBAPIService.swift */,
 				1B855A3124ABB6A6008A8789 /* MovieSearchResultFetcher.swift */,
+				1B855A3924ABC5C1008A8789 /* ImageFetcher.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B855A2C24ABB1F7008A8789 /* BoundingAnchorDefining.swift in Sources */,
+				1B855A3A24ABC5C1008A8789 /* ImageFetcher.swift in Sources */,
 				1B855A0724AB81BA008A8789 /* SearchViewController.swift in Sources */,
 				1B855A2024AB8C78008A8789 /* ResultsTableViewController.swift in Sources */,
 				1B855A3824ABBEA8008A8789 /* NSObjectPerformDebouncer.swift in Sources */,
