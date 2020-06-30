@@ -57,15 +57,22 @@ class SearchViewController: UIViewController {
     self.title = "Movies"
     self.navigationItem.searchController = searchController
 
-//    showEmptyState()
-    showLoading()
+    showEmptyState()
   }
 
 }
 
 extension SearchViewController: UISearchResultsUpdating {
-  func updateSearchResults(for: UISearchController) {
+  func updateSearchResults(for searchController: UISearchController) {
+    guard let text = searchController.searchBar.text
+      , text.count > 0 else {
+      hideLoading()
+      showEmptyState()
+      return
+    }
 
+    hideEmptyState()
+    showLoading()
   }
 }
 
