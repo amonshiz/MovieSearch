@@ -16,6 +16,7 @@
 		1B855A1824AB843E008A8789 /* UIViewController+Child.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B855A1724AB843E008A8789 /* UIViewController+Child.swift */; };
 		1B855A1C24AB8544008A8789 /* EmptyStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B855A1B24AB8544008A8789 /* EmptyStateViewController.swift */; };
 		1B855A1E24AB8703008A8789 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B855A1D24AB8703008A8789 /* LoadingViewController.swift */; };
+		1B855A2024AB8C78008A8789 /* ResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B855A1F24AB8C78008A8789 /* ResultsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		1B855A1724AB843E008A8789 /* UIViewController+Child.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Child.swift"; sourceTree = "<group>"; };
 		1B855A1B24AB8544008A8789 /* EmptyStateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateViewController.swift; sourceTree = "<group>"; };
 		1B855A1D24AB8703008A8789 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		1B855A1F24AB8C78008A8789 /* ResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 			children = (
 				1B855A1B24AB8544008A8789 /* EmptyStateViewController.swift */,
 				1B855A1D24AB8703008A8789 /* LoadingViewController.swift */,
+				1B855A1F24AB8C78008A8789 /* ResultsTableViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -164,6 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B855A0724AB81BA008A8789 /* SearchViewController.swift in Sources */,
+				1B855A2024AB8C78008A8789 /* ResultsTableViewController.swift in Sources */,
 				1B855A1C24AB8544008A8789 /* EmptyStateViewController.swift in Sources */,
 				1B855A0324AB81BA008A8789 /* AppDelegate.swift in Sources */,
 				1B855A0524AB81BA008A8789 /* SceneDelegate.swift in Sources */,

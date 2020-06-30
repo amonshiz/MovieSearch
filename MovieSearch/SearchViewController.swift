@@ -12,6 +12,7 @@ class SearchViewController: UIViewController {
   private lazy var searchController: UISearchController = {
     let controller = UISearchController()
     controller.searchResultsUpdater = self
+    controller.obscuresBackgroundDuringPresentation = false
     return controller
   }()
 
@@ -51,6 +52,24 @@ class SearchViewController: UIViewController {
     uninstall(loadingViewController, constraints: loadingConstraints)
   }
 
+  private lazy var resultsTableViewController: ResultsTableViewController = {
+    ResultsTableViewController()
+  }()
+  private lazy var resultsConstraints: [NSLayoutConstraint] = {
+    [
+      resultsTableViewController.view.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+      resultsTableViewController.view.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+      resultsTableViewController.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      resultsTableViewController.view.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+    ]
+  }()
+  private func showResults() {
+    install(resultsTableViewController, constraints: resultsConstraints)
+  }
+  private func hideResults() {
+    uninstall(resultsTableViewController, constraints: resultsConstraints)
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -66,13 +85,15 @@ extension SearchViewController: UISearchResultsUpdating {
   func updateSearchResults(for searchController: UISearchController) {
     guard let text = searchController.searchBar.text
       , text.count > 0 else {
-      hideLoading()
-      showEmptyState()
-      return
+        hideLoading()
+        hideResults()
+        showEmptyState()
+        return
     }
 
     hideEmptyState()
-    showLoading()
+    //    showLoading()
+    showResults()
   }
 }
 
