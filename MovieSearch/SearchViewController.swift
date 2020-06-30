@@ -26,23 +26,17 @@ class SearchViewController: UIViewController {
     return controller
   }()
 
-  private lazy var emptyStateViewController: EmptyStateViewController = {
-    EmptyStateViewController()
-  }()
+  private var emptyStateViewController: EmptyStateViewController!
   private lazy var emptyStateContraints: [NSLayoutConstraint] = {
     emptyStateViewController.view.boundingConstraints(equalTo: view.safeAreaLayoutGuide)
   }()
 
-  private lazy var loadingViewController: LoadingViewController = {
-    LoadingViewController()
-  }()
+  private var loadingViewController: LoadingViewController!
   private lazy var loadingConstraints: [NSLayoutConstraint] = {
     loadingViewController.view.boundingConstraints(equalTo: view.safeAreaLayoutGuide)
   }()
 
-  private lazy var resultsTableViewController: ResultsTableViewController = {
-    ResultsTableViewController()
-  }()
+  private var resultsTableViewController: ResultsTableViewController!
   private lazy var resultsConstraints: [NSLayoutConstraint] = {
     resultsTableViewController.view.boundingConstraints(equalTo: view.safeAreaLayoutGuide)
   }()
@@ -52,6 +46,10 @@ class SearchViewController: UIViewController {
   //MARK: - Lifecycle
   init(searchResultFetcher: MovieSearchResultFetching) {
     self.searchResultFetcher = searchResultFetcher
+
+    emptyStateViewController = EmptyStateViewController()
+    loadingViewController = LoadingViewController()
+    resultsTableViewController = ResultsTableViewController()
 
     super.init(nibName: nil, bundle: nil)
   }
