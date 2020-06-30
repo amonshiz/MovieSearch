@@ -42,17 +42,20 @@ class SearchViewController: UIViewController {
   }()
 
   private var searchResultFetcher: MovieSearchResultFetching
+  private let imageFetcher: ImageFetcher
   private let typingDebouncer: DebouncerInterface
 
   //MARK: - Lifecycle
   init(searchResultFetcher: MovieSearchResultFetching,
+       imageFetcher: ImageFetcher,
        debouncer: DebouncerInterface = NSObjectPerformDebouncer(interval: 0.25)) {
     self.searchResultFetcher = searchResultFetcher
+    self.imageFetcher = imageFetcher
     self.typingDebouncer = debouncer
 
     emptyStateViewController = EmptyStateViewController()
     loadingViewController = LoadingViewController()
-    resultsTableViewController = ResultsTableViewController()
+    resultsTableViewController = ResultsTableViewController(imageFetcher: imageFetcher)
 
     super.init(nibName: nil, bundle: nil)
   }

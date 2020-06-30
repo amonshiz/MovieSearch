@@ -23,8 +23,22 @@ class ResultsTableViewController: UIViewController {
 
   var results: SearchResult? {
     didSet {
+      // no idea what is going to happen so remove everything
+      imageFetcher.cancelAll()
       tableView.reloadData()
     }
+  }
+
+  private let imageFetcher: ImageFetcher
+
+  init(imageFetcher: ImageFetcher) {
+    self.imageFetcher = imageFetcher
+
+    super.init(nibName: nil, bundle: nil)
+  }
+
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
   }
 
   override func viewDidLoad() {
@@ -57,9 +71,46 @@ extension ResultsTableViewController: UITableViewDataSource, UITableViewDelegate
       fatalError("Unable to dequeue expected cell type")
     }
 
+    // configure the labels as they are ready immediately
     let result = results[indexPath.row]
+    let imdbID = result.imdbID
     cell.movieTitleLabel.text = result.title
     cell.yearLabel.text = result.year
+
+    // begin querying for the poster image
+    if let posterURL = result.posterURL {
+      imageFetcher.fetch(posterURL) { [weak self] image in
+        guard let self = self else { return }
+
+        DispatchQueue.main.async {
+          // get the current results and ensure they are valid for display
+          guard let results = self.results?.movies() else { return }
+
+          // ensure that the movie originally requested is still in the
+          // collection of movies still being displayed
+          guard let index = results.firstIndex(where: { movie -> Bool in
+            movie.imdbID == imdbID
+          }) else { return }
+
+          let innerIndexPath = IndexPath(row: index, section: 0)
+          guard let innerCell = self.tableView.cellForRow(at: innerIndexPath) as? SearchResultTableViewCell else { return }
+          
+          innerCell.posterImage.image = image
+        }
+      }
+    }
     return cell
+  }
+
+  func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    guard let results = results?.movies()
+      , results.count > indexPath.row else {
+        return
+    }
+
+    let result = results[indexPath.row]
+    if let posterURL = result.posterURL {
+      imageFetcher.cancelFetch(for: posterURL)
+    }
   }
 }
