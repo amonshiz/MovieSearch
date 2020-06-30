@@ -23,6 +23,8 @@
 		1B855A2C24ABB1F7008A8789 /* BoundingAnchorDefining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B855A2B24ABB1F7008A8789 /* BoundingAnchorDefining.swift */; };
 		1B855A3024ABB25B008A8789 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B855A2F24ABB25B008A8789 /* UIView+Constraints.swift */; };
 		1B855A3224ABB6A6008A8789 /* MovieSearchResultFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B855A3124ABB6A6008A8789 /* MovieSearchResultFetcher.swift */; };
+		1B855A3724ABBEA8008A8789 /* DebouncerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B855A3524ABBEA8008A8789 /* DebouncerInterface.swift */; };
+		1B855A3824ABBEA8008A8789 /* NSObjectPerformDebouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B855A3624ABBEA8008A8789 /* NSObjectPerformDebouncer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		1B855A2B24ABB1F7008A8789 /* BoundingAnchorDefining.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundingAnchorDefining.swift; sourceTree = "<group>"; };
 		1B855A2F24ABB25B008A8789 /* UIView+Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 		1B855A3124ABB6A6008A8789 /* MovieSearchResultFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchResultFetcher.swift; sourceTree = "<group>"; };
+		1B855A3524ABBEA8008A8789 /* DebouncerInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebouncerInterface.swift; sourceTree = "<group>"; };
+		1B855A3624ABBEA8008A8789 /* NSObjectPerformDebouncer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSObjectPerformDebouncer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +127,8 @@
 		1B855A2824ABA674008A8789 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				1B855A3524ABBEA8008A8789 /* DebouncerInterface.swift */,
+				1B855A3624ABBEA8008A8789 /* NSObjectPerformDebouncer.swift */,
 				1B855A2924ABA6A8008A8789 /* OMDBAPIService.swift */,
 				1B855A3124ABB6A6008A8789 /* MovieSearchResultFetcher.swift */,
 			);
@@ -203,7 +209,9 @@
 				1B855A2C24ABB1F7008A8789 /* BoundingAnchorDefining.swift in Sources */,
 				1B855A0724AB81BA008A8789 /* SearchViewController.swift in Sources */,
 				1B855A2024AB8C78008A8789 /* ResultsTableViewController.swift in Sources */,
+				1B855A3824ABBEA8008A8789 /* NSObjectPerformDebouncer.swift in Sources */,
 				1B855A3024ABB25B008A8789 /* UIView+Constraints.swift in Sources */,
+				1B855A3724ABBEA8008A8789 /* DebouncerInterface.swift in Sources */,
 				1B855A2324AB8F4A008A8789 /* SearchResult.swift in Sources */,
 				1B855A1C24AB8544008A8789 /* EmptyStateViewController.swift in Sources */,
 				1B855A0324AB81BA008A8789 /* AppDelegate.swift in Sources */,
