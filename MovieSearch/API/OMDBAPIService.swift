@@ -31,8 +31,14 @@ final class OMDBAPIService: MovieSearchService {
    */
   private static let apiKey = URLQueryItem(name: "apikey", value: "fb2aae1d")
 
-  private let urlSession = URLSession(configuration: .default)
+  private let urlSession: URLSession
   private var dataTask: URLSessionDataTask?
+
+  init() {
+    let configuration = URLSessionConfiguration.default
+    configuration.requestCachePolicy = .returnCacheDataElseLoad
+    urlSession = URLSession(configuration: configuration)
+  }
 
   func fetchMovies(matching: String, _ completion: @escaping SearchResultCallback) {
     dataTask?.cancel()
