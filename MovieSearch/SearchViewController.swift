@@ -9,6 +9,16 @@
 import UIKit
 
 class SearchViewController: UIViewController {
+  //MARK: - Child View Controller management
+  private enum ChildViewController {
+    case empty, loading, results
+  }
+
+  private enum ChildDisplayAction {
+    case show, hide
+  }
+
+  //MARK: - Members
   private lazy var searchController: UISearchController = {
     let controller = UISearchController()
     controller.searchResultsUpdater = self
@@ -22,12 +32,6 @@ class SearchViewController: UIViewController {
   private lazy var emptyStateContraints: [NSLayoutConstraint] = {
     emptyStateViewController.view.boundingConstraints(equalTo: view.safeAreaLayoutGuide)
   }()
-  private func showEmptyState() {
-    install(emptyStateViewController, constraints: emptyStateContraints)
-  }
-  private func hideEmptyState() {
-    uninstall(emptyStateViewController, constraints: emptyStateContraints)
-  }
 
   private lazy var loadingViewController: LoadingViewController = {
     LoadingViewController()
@@ -35,12 +39,6 @@ class SearchViewController: UIViewController {
   private lazy var loadingConstraints: [NSLayoutConstraint] = {
     loadingViewController.view.boundingConstraints(equalTo: view.safeAreaLayoutGuide)
   }()
-  private func showLoading() {
-    install(loadingViewController, constraints: loadingConstraints)
-  }
-  private func hideLoading() {
-    uninstall(loadingViewController, constraints: loadingConstraints)
-  }
 
   private lazy var resultsTableViewController: ResultsTableViewController = {
     ResultsTableViewController()
@@ -48,15 +46,10 @@ class SearchViewController: UIViewController {
   private lazy var resultsConstraints: [NSLayoutConstraint] = {
     resultsTableViewController.view.boundingConstraints(equalTo: view.safeAreaLayoutGuide)
   }()
-  private func showResults() {
-    install(resultsTableViewController, constraints: resultsConstraints)
-  }
-  private func hideResults() {
-    uninstall(resultsTableViewController, constraints: resultsConstraints)
-  }
 
   private let apiService: MovieSearchService
 
+  //MARK: - Lifecycle
   init(searchService: MovieSearchService) {
     apiService = searchService
 
@@ -73,34 +66,65 @@ class SearchViewController: UIViewController {
     self.title = "Movies"
     self.navigationItem.searchController = searchController
 
-    showEmptyState()
+    take(action: .show, for: .empty)
   }
 
 }
 
+//MARK: - Child View Controller Extension
+extension SearchViewController {
+  private func take(action: ChildDisplayAction, for viewController: ChildViewController) {
+    let child: UIViewController
+    let constraints: [NSLayoutConstraint]
+    switch viewController {
+      case .empty:
+        child = emptyStateViewController
+        constraints = emptyStateContraints
+      case .loading:
+        child = loadingViewController
+        constraints = loadingConstraints
+      case .results:
+        child = resultsTableViewController
+        constraints = resultsConstraints
+    }
+
+    let functionToApply: (UIViewController, [NSLayoutConstraint]) -> ()
+    switch action {
+      case .show:
+        functionToApply = install
+      case .hide:
+        functionToApply = uninstall
+    }
+
+    functionToApply(child, constraints)
+  }
+}
+
+//MARK: - UISearchResultsUpdating
 extension SearchViewController: UISearchResultsUpdating {
   func updateSearchResults(for searchController: UISearchController) {
     guard let text = searchController.searchBar.text
       , text.count > 0 else {
-        hideLoading()
-        hideResults()
-        showEmptyState()
+        take(action: .hide, for: .loading)
+        take(action: .hide, for: .results)
+        take(action: .show, for: .empty)
         return
     }
 
     // User has entered text, so start the spinner and start a search
-    hideEmptyState()
-    showLoading()
+    take(action: .hide, for: .empty)
+    take(action: .show, for: .loading)
     apiService.fetchMovies(matching: text) { [weak self] result in
       DispatchQueue.main.async {
         guard let self = self else { return }
 
-        self.hideLoading()
+        self.take(action: .hide, for: .loading)
         switch result {
           case .none:
-            self.showEmptyState()
+            self.take(action: .show, for: .empty)
+
           case .some(_):
-            self.showResults()
+            self.take(action: .show, for: .results)
         }
 
         self.resultsTableViewController.results = result
