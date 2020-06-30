@@ -43,14 +43,17 @@ class SearchViewController: UIViewController {
 
   private var searchResultFetcher: MovieSearchResultFetching
   private let imageFetcher: ImageFetcher
+  private let keyboardObserver: KeyboardObserver
   private let typingDebouncer: DebouncerInterface
 
   //MARK: - Lifecycle
   init(searchResultFetcher: MovieSearchResultFetching,
        imageFetcher: ImageFetcher,
+       keyboardObserver: KeyboardObserver,
        debouncer: DebouncerInterface = NSObjectPerformDebouncer(interval: 0.25)) {
     self.searchResultFetcher = searchResultFetcher
     self.imageFetcher = imageFetcher
+    self.keyboardObserver = keyboardObserver
     self.typingDebouncer = debouncer
 
     emptyStateViewController = EmptyStateViewController()
@@ -75,6 +78,18 @@ class SearchViewController: UIViewController {
     typingDebouncer.add { [weak self] in
       guard let self = self else { return }
       self.searchResultFetcher.fetchMovies(matching: self.searchController.searchBar.text)
+    }
+
+    keyboardObserver.add { [weak self] info in
+      guard let self = self else { return }
+      // convert rects to same coordinate space
+      let convertedView = self.view.convert(self.view.frame, to: nil)
+      let convertedKeyboard = self.view.convert(info.futureFrame, to: nil)
+      // intersect keyboard with view
+      let intersection = convertedView.intersection(convertedKeyboard)
+      var insets = self.additionalSafeAreaInsets
+      insets.bottom = intersection.isNull ? 0 : intersection.height
+      self.additionalSafeAreaInsets = insets
     }
 
     take(action: .show, for: .empty)

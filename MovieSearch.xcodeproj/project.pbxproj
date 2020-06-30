@@ -26,6 +26,7 @@
 		1B855A3724ABBEA8008A8789 /* DebouncerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B855A3524ABBEA8008A8789 /* DebouncerInterface.swift */; };
 		1B855A3824ABBEA8008A8789 /* NSObjectPerformDebouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B855A3624ABBEA8008A8789 /* NSObjectPerformDebouncer.swift */; };
 		1B855A3A24ABC5C1008A8789 /* ImageFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B855A3924ABC5C1008A8789 /* ImageFetcher.swift */; };
+		1B855A3E24ABD8B8008A8789 /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B855A3D24ABD8B8008A8789 /* KeyboardObserver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		1B855A3524ABBEA8008A8789 /* DebouncerInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebouncerInterface.swift; sourceTree = "<group>"; };
 		1B855A3624ABBEA8008A8789 /* NSObjectPerformDebouncer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSObjectPerformDebouncer.swift; sourceTree = "<group>"; };
 		1B855A3924ABC5C1008A8789 /* ImageFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFetcher.swift; sourceTree = "<group>"; };
+		1B855A3D24ABD8B8008A8789 /* KeyboardObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 		1B855A0124AB81BA008A8789 /* MovieSearch */ = {
 			isa = PBXGroup;
 			children = (
+				1B855A3D24ABD8B8008A8789 /* KeyboardObserver.swift */,
 				1B855A2824ABA674008A8789 /* API */,
 				1B855A2124AB8F34008A8789 /* Models */,
 				1B855A1A24AB84FD008A8789 /* Views */,
@@ -223,6 +226,7 @@
 				1B855A2A24ABA6A8008A8789 /* OMDBAPIService.swift in Sources */,
 				1B855A1824AB843E008A8789 /* UIViewController+Child.swift in Sources */,
 				1B855A1E24AB8703008A8789 /* LoadingViewController.swift in Sources */,
+				1B855A3E24ABD8B8008A8789 /* KeyboardObserver.swift in Sources */,
 				1B855A2724ABA0A7008A8789 /* SearchResultTableViewCell.swift in Sources */,
 				1B855A3224ABB6A6008A8789 /* MovieSearchResultFetcher.swift in Sources */,
 			);
