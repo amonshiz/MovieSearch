@@ -15,6 +15,10 @@ class SearchViewController: UIViewController {
     return controller
   }()
 
+  private lazy var emptyStateViewController: EmptyStateViewController = {
+    EmptyStateViewController()
+  }()
+
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view.
@@ -22,6 +26,13 @@ class SearchViewController: UIViewController {
     self.title = "Movies"
 
     self.navigationItem.searchController = searchController
+
+    install(emptyStateViewController, constraints: [
+      emptyStateViewController.view.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+      emptyStateViewController.view.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+      emptyStateViewController.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      emptyStateViewController.view.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+    ])
   }
 
 }

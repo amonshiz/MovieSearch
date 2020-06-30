@@ -14,6 +14,7 @@
 		1B855A0C24AB81BE008A8789 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B855A0B24AB81BE008A8789 /* Assets.xcassets */; };
 		1B855A0F24AB81BE008A8789 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B855A0D24AB81BE008A8789 /* LaunchScreen.storyboard */; };
 		1B855A1824AB843E008A8789 /* UIViewController+Child.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B855A1724AB843E008A8789 /* UIViewController+Child.swift */; };
+		1B855A1C24AB8544008A8789 /* EmptyStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B855A1B24AB8544008A8789 /* EmptyStateViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		1B855A0E24AB81BE008A8789 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1B855A1024AB81BE008A8789 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B855A1724AB843E008A8789 /* UIViewController+Child.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Child.swift"; sourceTree = "<group>"; };
+		1B855A1B24AB8544008A8789 /* EmptyStateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 		1B855A0124AB81BA008A8789 /* MovieSearch */ = {
 			isa = PBXGroup;
 			children = (
+				1B855A1A24AB84FD008A8789 /* Views */,
 				1B855A1624AB843E008A8789 /* Extensions */,
 				1B855A0224AB81BA008A8789 /* AppDelegate.swift */,
 				1B855A0424AB81BA008A8789 /* SceneDelegate.swift */,
@@ -76,6 +79,14 @@
 				1B855A1724AB843E008A8789 /* UIViewController+Child.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1B855A1A24AB84FD008A8789 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1B855A1B24AB8544008A8789 /* EmptyStateViewController.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B855A0724AB81BA008A8789 /* SearchViewController.swift in Sources */,
+				1B855A1C24AB8544008A8789 /* EmptyStateViewController.swift in Sources */,
 				1B855A0324AB81BA008A8789 /* AppDelegate.swift in Sources */,
 				1B855A0524AB81BA008A8789 /* SceneDelegate.swift in Sources */,
 				1B855A1824AB843E008A8789 /* UIViewController+Child.swift in Sources */,
