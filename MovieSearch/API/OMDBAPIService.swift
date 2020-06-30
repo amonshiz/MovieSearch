@@ -32,8 +32,11 @@ final class OMDBAPIService: MovieSearchService {
   private static let apiKey = URLQueryItem(name: "apikey", value: "fb2aae1d")
 
   private let urlSession = URLSession(configuration: .default)
+  private var dataTask: URLSessionDataTask?
 
   func fetchMovies(matching: String, _ completion: @escaping SearchResultCallback) {
+    dataTask?.cancel()
+
     guard var urlComponents = URLComponents(string: OMDBAPIService.baseURLString) else {
       fatalError("baseURLString unable to create url components")
     }
@@ -47,7 +50,11 @@ final class OMDBAPIService: MovieSearchService {
       fatalError("Unable to make valid URL from components and query item")
     }
 
-    let dataTask = urlSession.dataTask(with: finalURL) { data, response, error in
+    dataTask = urlSession.dataTask(with: finalURL) { [weak self] data, response, error in
+      defer {
+        self?.dataTask = nil
+      }
+
       guard error == nil else {
         completion(nil)
         return
@@ -63,6 +70,6 @@ final class OMDBAPIService: MovieSearchService {
       completion(data)
     }
 
-    dataTask.resume()
+    dataTask?.resume()
   }
 }
