@@ -13,6 +13,8 @@ protocol ResultsTableViewControllerDelegate: class {
 }
 
 class ResultsTableViewController: UIViewController {
+
+  //MARK: - View Generation
   private lazy var tableView: UITableView = {
     let view = UITableView()
     view.translatesAutoresizingMaskIntoConstraints = false
@@ -33,9 +35,11 @@ class ResultsTableViewController: UIViewController {
     }
   }
 
+  //MARK: - Members
   private let imageFetcher: ImageFetcher
   public weak var delegate: ResultsTableViewControllerDelegate?
 
+  //MARK: - Lifecycle
   init(imageFetcher: ImageFetcher) {
     self.imageFetcher = imageFetcher
 
@@ -56,6 +60,7 @@ class ResultsTableViewController: UIViewController {
   }
 }
 
+//MARK: - UITableViewDataSource & UITableViewDelegate
 extension ResultsTableViewController: UITableViewDataSource, UITableViewDelegate {
   func numberOfSections(in tableView: UITableView) -> Int {
     return 1

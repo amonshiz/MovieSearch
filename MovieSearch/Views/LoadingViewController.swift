@@ -9,6 +9,8 @@
 import UIKit
 
 class LoadingViewController: UIViewController {
+
+  //MARK: - View Generation
   private lazy var label: UILabel = {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
@@ -36,6 +38,7 @@ class LoadingViewController: UIViewController {
     return view
   }()
 
+  //MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
 

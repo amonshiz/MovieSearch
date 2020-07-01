@@ -10,6 +10,7 @@ import UIKit
 
 class EmptyStateViewController: UIViewController {
 
+  //MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
 

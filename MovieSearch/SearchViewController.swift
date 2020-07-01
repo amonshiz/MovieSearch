@@ -151,6 +151,7 @@ extension SearchViewController: UISearchResultsUpdating {
   }
 }
 
+//MARK: - MovieSearchResultUpdating
 extension SearchViewController: MovieSearchResultUpdating {
   func update(with results: SearchResult) {
     DispatchQueue.main.async {
@@ -173,6 +174,7 @@ extension SearchViewController: MovieSearchResultUpdating {
   }
 }
 
+//MARK: - ResultsTableViewControllerDelegate
 extension SearchViewController: ResultsTableViewControllerDelegate {
   func tableViewController(_ tableViewController: ResultsTableViewController, selected: SearchResultMovie) {
     self.searchController.searchBar.resignFirstResponder()

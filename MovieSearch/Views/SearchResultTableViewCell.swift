@@ -10,6 +10,7 @@ import UIKit
 
 class SearchResultTableViewCell: UITableViewCell {
 
+  //MARK: - View Generation
   lazy var movieTitleLabel: UILabel = {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
@@ -58,11 +59,7 @@ class SearchResultTableViewCell: UITableViewCell {
     return view
   }()
 
-  override func awakeFromNib() {
-    super.awakeFromNib()
-    // Initialization code
-  }
-
+  //MARK: - Lifecycle
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: .default, reuseIdentifier: reuseIdentifier)
 

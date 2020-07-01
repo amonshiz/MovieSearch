@@ -9,6 +9,8 @@
 import UIKit
 
 class MovieDetailViewController: UIViewController {
+
+  //MARK: - View Generation
   private lazy var posterImage: UIImageView = {
     let view = UIImageView()
     view.translatesAutoresizingMaskIntoConstraints = false
@@ -96,8 +98,6 @@ class MovieDetailViewController: UIViewController {
       DispatchQueue.main.async {
         self.movieTitleLabel.text = title
         ratings.map(self.ratingView(for:)).forEach(self.ratingsStackView.addArrangedSubview(_:))
-
-        self.view.setNeedsUpdateConstraints()
       }
 
       guard let posterURL = maybePosterURL else { return }
@@ -112,10 +112,12 @@ class MovieDetailViewController: UIViewController {
     }
   }
 
+  //MARK: - Members
   private let movieTitle: String
   private var detailFetcher: MovieDetailFetching
   private let imageFetcher: ImageFetcher
 
+  //MARK: - Lifecycle
   init(for movieTitle: String,
        detailFetcher: MovieDetailFetching,
        imageFetcher: ImageFetcher) {
@@ -160,6 +162,7 @@ class MovieDetailViewController: UIViewController {
   }
 }
 
+//MARK: - MovieDetailUpdating
 extension MovieDetailViewController: MovieDetailUpdating {
   func update(with results: MovieDetail) {
     self.details = results
