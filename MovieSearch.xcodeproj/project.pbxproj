@@ -27,6 +27,8 @@
 		1B855A3824ABBEA8008A8789 /* NSObjectPerformDebouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B855A3624ABBEA8008A8789 /* NSObjectPerformDebouncer.swift */; };
 		1B855A3A24ABC5C1008A8789 /* ImageFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B855A3924ABC5C1008A8789 /* ImageFetcher.swift */; };
 		1B855A3E24ABD8B8008A8789 /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B855A3D24ABD8B8008A8789 /* KeyboardObserver.swift */; };
+		1B855A4024ABDEC3008A8789 /* MovieDetailFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B855A3F24ABDEC3008A8789 /* MovieDetailFetcher.swift */; };
+		1B855A4224ABDF58008A8789 /* MovieDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B855A4124ABDF58008A8789 /* MovieDetail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		1B855A3624ABBEA8008A8789 /* NSObjectPerformDebouncer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSObjectPerformDebouncer.swift; sourceTree = "<group>"; };
 		1B855A3924ABC5C1008A8789 /* ImageFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFetcher.swift; sourceTree = "<group>"; };
 		1B855A3D24ABD8B8008A8789 /* KeyboardObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
+		1B855A3F24ABDEC3008A8789 /* MovieDetailFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailFetcher.swift; sourceTree = "<group>"; };
+		1B855A4124ABDF58008A8789 /* MovieDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +129,7 @@
 			children = (
 				1B855A2224AB8F4A008A8789 /* SearchResult.swift */,
 				1B855A2424AB9195008A8789 /* SampleSearch.json */,
+				1B855A4124ABDF58008A8789 /* MovieDetail.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -137,6 +142,7 @@
 				1B855A2924ABA6A8008A8789 /* OMDBAPIService.swift */,
 				1B855A3124ABB6A6008A8789 /* MovieSearchResultFetcher.swift */,
 				1B855A3924ABC5C1008A8789 /* ImageFetcher.swift */,
+				1B855A3F24ABDEC3008A8789 /* MovieDetailFetcher.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -217,12 +223,14 @@
 				1B855A0724AB81BA008A8789 /* SearchViewController.swift in Sources */,
 				1B855A2024AB8C78008A8789 /* ResultsTableViewController.swift in Sources */,
 				1B855A3824ABBEA8008A8789 /* NSObjectPerformDebouncer.swift in Sources */,
+				1B855A4024ABDEC3008A8789 /* MovieDetailFetcher.swift in Sources */,
 				1B855A3024ABB25B008A8789 /* UIView+Constraints.swift in Sources */,
 				1B855A3724ABBEA8008A8789 /* DebouncerInterface.swift in Sources */,
 				1B855A2324AB8F4A008A8789 /* SearchResult.swift in Sources */,
 				1B855A1C24AB8544008A8789 /* EmptyStateViewController.swift in Sources */,
 				1B855A0324AB81BA008A8789 /* AppDelegate.swift in Sources */,
 				1B855A0524AB81BA008A8789 /* SceneDelegate.swift in Sources */,
+				1B855A4224ABDF58008A8789 /* MovieDetail.swift in Sources */,
 				1B855A2A24ABA6A8008A8789 /* OMDBAPIService.swift in Sources */,
 				1B855A1824AB843E008A8789 /* UIViewController+Child.swift in Sources */,
 				1B855A1E24AB8703008A8789 /* LoadingViewController.swift in Sources */,

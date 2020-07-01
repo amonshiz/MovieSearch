@@ -13,7 +13,12 @@ protocol MovieSearchService {
   func fetchMovies(matching: String, _ completion: @escaping SearchResultCallback) -> ()
 }
 
-final class OMDBAPIService: MovieSearchService {
+protocol MovieDetailService {
+  typealias DetailResultCallback = (Data?) -> ()
+  func fetch(movie: String, _ completion: @escaping DetailResultCallback) -> ()
+}
+
+final class OMDBAPIService: MovieSearchService, MovieDetailService {
   /*
    Singleton instance that will be used through out the app, though this
    specific refrence should only be used at the top most point possible and then
@@ -79,5 +84,9 @@ final class OMDBAPIService: MovieSearchService {
 
   func fetchMovies(matching: String, _ completion: @escaping SearchResultCallback) {
     fetch(with: [URLQueryItem(name: "s", value: matching)], completion)
+  }
+
+  func fetch(movie: String, _ completion: @escaping DetailResultCallback) {
+    fetch(with: [URLQueryItem(name: "t", value: movie)], completion)
   }
 }
