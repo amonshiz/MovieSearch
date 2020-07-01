@@ -68,6 +68,8 @@ class SearchResultTableViewCell: UITableViewCell {
 
     contentView.addSubview(cellStackView)
     NSLayoutConstraint.activate(cellStackView.boundingConstraints(equalTo: contentView.layoutMarginsGuide))
+
+    accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
   }
   
   required init?(coder: NSCoder) {

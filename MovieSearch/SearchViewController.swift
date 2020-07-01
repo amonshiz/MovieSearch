@@ -42,16 +42,19 @@ class SearchViewController: UIViewController {
   }()
 
   private var searchResultFetcher: MovieSearchResultFetching
+  private var detailFetcher: MovieDetailFetching
   private let imageFetcher: ImageFetcher
   private let keyboardObserver: KeyboardObserver
   private let typingDebouncer: DebouncerInterface
 
   //MARK: - Lifecycle
   init(searchResultFetcher: MovieSearchResultFetching,
+       detailFetcher: MovieDetailFetching,
        imageFetcher: ImageFetcher,
        keyboardObserver: KeyboardObserver,
        debouncer: DebouncerInterface = NSObjectPerformDebouncer(interval: 0.25)) {
     self.searchResultFetcher = searchResultFetcher
+    self.detailFetcher = detailFetcher
     self.imageFetcher = imageFetcher
     self.keyboardObserver = keyboardObserver
     self.typingDebouncer = debouncer
@@ -73,6 +76,7 @@ class SearchViewController: UIViewController {
     self.title = "Movies"
     self.navigationItem.searchController = searchController
 
+    resultsTableViewController.delegate = self
     searchResultFetcher.delegate = self
 
     typingDebouncer.add { [weak self] in
@@ -84,9 +88,10 @@ class SearchViewController: UIViewController {
       guard let self = self else { return }
       // convert rects to same coordinate space
       let convertedView = self.view.convert(self.view.frame, to: nil)
+      let insetView = convertedView.inset(by: self.view.safeAreaInsets)
       let convertedKeyboard = self.view.convert(info.futureFrame, to: nil)
       // intersect keyboard with view
-      let intersection = convertedView.intersection(convertedKeyboard)
+      let intersection = insetView.intersection(convertedKeyboard)
       var insets = self.additionalSafeAreaInsets
       insets.bottom = intersection.isNull ? 0 : intersection.height
       self.additionalSafeAreaInsets = insets
@@ -168,3 +173,15 @@ extension SearchViewController: MovieSearchResultUpdating {
   }
 }
 
+extension SearchViewController: ResultsTableViewControllerDelegate {
+  func tableViewController(_ tableViewController: ResultsTableViewController, selected: SearchResultMovie) {
+    self.searchController.searchBar.resignFirstResponder()
+
+    let detailViewController =
+      MovieDetailViewController(for: selected.title,
+                                detailFetcher: detailFetcher,
+                                imageFetcher:  imageFetcher)
+
+    self.navigationController?.pushViewController(detailViewController, animated: true)
+  }
+}

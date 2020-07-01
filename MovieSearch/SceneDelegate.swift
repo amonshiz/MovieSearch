@@ -26,10 +26,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     let apiService = OMDBAPIService.shared
     let searchResultFetcher = MovieSearchResultFetcher(service: apiService)
+    let detailFetcher = MovieDetailFetcher(service: apiService)
     let imageFetcher = ImageFetcher.shared
     let keyboardObserver = KeyboardObserver()
     let searchViewController =
       SearchViewController(searchResultFetcher: searchResultFetcher,
+                           detailFetcher: detailFetcher,
                            imageFetcher: imageFetcher,
                            keyboardObserver: keyboardObserver)
     let navigationViewController = UINavigationController(rootViewController: searchViewController)

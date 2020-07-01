@@ -29,6 +29,7 @@
 		1B855A3E24ABD8B8008A8789 /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B855A3D24ABD8B8008A8789 /* KeyboardObserver.swift */; };
 		1B855A4024ABDEC3008A8789 /* MovieDetailFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B855A3F24ABDEC3008A8789 /* MovieDetailFetcher.swift */; };
 		1B855A4224ABDF58008A8789 /* MovieDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B855A4124ABDF58008A8789 /* MovieDetail.swift */; };
+		1B855A4424ABE19F008A8789 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B855A4324ABE19F008A8789 /* MovieDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		1B855A3D24ABD8B8008A8789 /* KeyboardObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
 		1B855A3F24ABDEC3008A8789 /* MovieDetailFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailFetcher.swift; sourceTree = "<group>"; };
 		1B855A4124ABDF58008A8789 /* MovieDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetail.swift; sourceTree = "<group>"; };
+		1B855A4324ABE19F008A8789 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 				1B855A1D24AB8703008A8789 /* LoadingViewController.swift */,
 				1B855A1F24AB8C78008A8789 /* ResultsTableViewController.swift */,
 				1B855A2624ABA0A7008A8789 /* SearchResultTableViewCell.swift */,
+				1B855A4324ABE19F008A8789 /* MovieDetailViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 				1B855A2A24ABA6A8008A8789 /* OMDBAPIService.swift in Sources */,
 				1B855A1824AB843E008A8789 /* UIViewController+Child.swift in Sources */,
 				1B855A1E24AB8703008A8789 /* LoadingViewController.swift in Sources */,
+				1B855A4424ABE19F008A8789 /* MovieDetailViewController.swift in Sources */,
 				1B855A3E24ABD8B8008A8789 /* KeyboardObserver.swift in Sources */,
 				1B855A2724ABA0A7008A8789 /* SearchResultTableViewCell.swift in Sources */,
 				1B855A3224ABB6A6008A8789 /* MovieSearchResultFetcher.swift in Sources */,

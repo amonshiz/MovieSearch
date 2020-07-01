@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol ResultsTableViewControllerDelegate: class {
+  func tableViewController(_ tableViewController: ResultsTableViewController, selected: SearchResultMovie)
+}
+
 class ResultsTableViewController: UIViewController {
   private lazy var tableView: UITableView = {
     let view = UITableView()
@@ -30,6 +34,7 @@ class ResultsTableViewController: UIViewController {
   }
 
   private let imageFetcher: ImageFetcher
+  public weak var delegate: ResultsTableViewControllerDelegate?
 
   init(imageFetcher: ImageFetcher) {
     self.imageFetcher = imageFetcher
@@ -100,6 +105,15 @@ extension ResultsTableViewController: UITableViewDataSource, UITableViewDelegate
       }
     }
     return cell
+  }
+
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    guard let results = results?.movies()
+      , results.count > indexPath.row else {
+        return
+    }
+
+    delegate?.tableViewController(self, selected: results[indexPath.row])
   }
 
   func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
