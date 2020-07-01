@@ -19,11 +19,11 @@ protocol MovieSearchResultFetching {
 }
 
 class MovieSearchResultFetcher: MovieSearchResultFetching {
-  private let apiService: MovieSearchService
+  private let service: MovieSearchService
   public weak var delegate: MovieSearchResultUpdating?
 
   init(service: MovieSearchService) {
-    self.apiService = service
+    self.service = service
   }
 
   func fetchMovies(matching: String?) {
@@ -34,19 +34,18 @@ class MovieSearchResultFetcher: MovieSearchResultFetching {
       return
     }
 
-    apiService.fetchMovies(matching: query) { [weak self] data in
+    service.fetchMovies(matching: query) { [weak self] data in
       guard let self = self else { return }
       defer {
         self.delegate?.update(with: resultToReturn)
       }
 
-      if let data = data {
-        let decoder = JSONDecoder()
-        do {
-          resultToReturn = try decoder.decode(SearchResult.self, from: data)
-        } catch {
-          print("Error decoding: \(error)")
-        }
+      guard let data = data else  { return }
+      let decoder = JSONDecoder()
+      do {
+        resultToReturn = try decoder.decode(SearchResult.self, from: data)
+      } catch {
+        print("Error decoding: \(error)")
       }
     }
   }
